@@ -25,15 +25,9 @@ function convolutionFFT(input, kernel, opt) {
             throw new Error("Invalid number of rows or columns " + nRows + " " + nCols);
         }
     }
-    var radix2Sized = FFTUtils.toRadix2(inputData, nRows, nCols, {inplace:false});
-
-    //var d = new Date();
-    //var start = d.getTime();
-    var convolutedSpectrum = FFTUtils.convolute(radix2Sized.data, kernel, radix2Sized.rows, radix2Sized.cols);
-    //var d0 = new Date();
-    //console.log(d0.getTime()-start);
-    //
-    return FFTUtils.crop(convolutedSpectrum, radix2Sized.rows, radix2Sized.cols, nRows, nCols);
+    var radix2Sized = FFTUtils.toRadix2(inputData, nRows, nCols);
+    var conv = FFTUtils.convolute(radix2Sized.data, kernel, radix2Sized.rows, radix2Sized.cols);
+    return FFTUtils.crop(conv, radix2Sized.rows, radix2Sized.cols, nRows, nCols);
 }
 
 function convolutionDirect(input, kernel, opt) {
@@ -85,19 +79,17 @@ function convolutionDirect(input, kernel, opt) {
             for ( j = 0; j < kHeight; j++) {
                 for ( i = 0; i < kWidth; i++) {
                     kVal = kernel[kHeight - j - 1][kWidth - i - 1];
-                    //console.log(kVal)
-                    row = (y + j -hHeight);// + nRows)% nRows;
+                    /*row = (y + j -hHeight);// + nRows)% nRows;
                     col = (x + i - hWidth);// + nCols)% nCols;
                     if(row>=0&&col>=0&&row<nRows&&col<nCols){
                         index = (row * nCols + col);
                         sum += inputData[index] * kVal;
-                    }
+                    }*/
                     //Periodic convolution
-                    /*
-                    row = (y + j -hHeight + nRows)% nRows;
-                    col = (x + i - hWidth + nCols)% nCols;
+                    row = (y + j -hHeight + nRows) % nRows;
+                    col = (x + i - hWidth + nCols) % nCols;
                     index = (row * nCols + col);
-                    sum += inputData[index] * kVal;*/
+                    sum += inputData[index] * kVal;
                 }
             }
             index = (y * nCols + x);

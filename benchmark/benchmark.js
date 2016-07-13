@@ -2,10 +2,10 @@
  * Created by acastillo on 7/12/16.
  */
 //var Benchmark = require('benchmark');
-var convolution = require("../");
+var convolution = require("../src/index");
 //var suite = new Benchmark.Suite;
 
-var ns = [1024];//[256,300,512,600,1024];//,2048];
+var ns = [256,300,512,600,1024];
 var nks = [3,5,11,19,27,33,37];
 
 var timesNormal = new Array(ns.length);
