@@ -99,7 +99,35 @@ function convolutionDirect(input, kernel, opt) {
     return output;
 }
 
+
+
+function LoG(sigma, nPoints, options){
+    var factor = 1000;
+    if(options&&options.factor){
+        factor = options.factor;
+    }
+
+    var kernel = new Array(nPoints);
+    var i,j,tmp,y2,tmp2;
+
+    factor*=-1;//-1/(Math.PI*Math.pow(sigma,4));
+    var center = (nPoints-1)/2;
+    var sigma2 = 2*sigma*sigma;
+    for( i=0;i<nPoints;i++){
+        kernel[i]=new Array(nPoints);
+        y2 = (i-center)*(i-center);
+        for( j=0;j<nPoints;j++){
+            tmp = -((j-center)*(j-center)+y2)/sigma2;
+            kernel[i][j]=Math.round(factor*(1+tmp)*Math.exp(tmp));
+        }
+    }
+
+    return kernel;
+}
+
+
 module.exports = {
     fft:convolutionFFT,
-    direct:convolutionDirect
+    direct:convolutionDirect,
+    kernelFactory:{LoG:LoG}
 };
