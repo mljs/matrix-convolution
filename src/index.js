@@ -79,13 +79,6 @@ function convolutionDirect(input, kernel, opt) {
             for ( j = 0; j < kHeight; j++) {
                 for ( i = 0; i < kWidth; i++) {
                     kVal = kernel[kHeight - j - 1][kWidth - i - 1];
-                    /*row = (y + j -hHeight);// + nRows)% nRows;
-                    col = (x + i - hWidth);// + nCols)% nCols;
-                    if(row>=0&&col>=0&&row<nRows&&col<nCols){
-                        index = (row * nCols + col);
-                        sum += inputData[index] * kVal;
-                    }*/
-                    //Periodic convolution
                     row = (y + j -hHeight + nRows) % nRows;
                     col = (x + i - hWidth + nCols) % nCols;
                     index = (row * nCols + col);
