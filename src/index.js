@@ -5,33 +5,60 @@
 var FFTUtils = require("ml-fft").FFTUtils;
 
 function convolutionFFT(input, kernel, opt) {
-    var options = Object.assign({}, opt);
-    var inputData = input;
+    var tmp = matrix2Array(input);
+    var inputData = tmp.data;
+    var options = Object.assign({normalize : false, divisor : 1, rows:tmp.rows, cols:tmp.cols}, opt);
+
     var nRows, nCols;
-    if (typeof input[0] != "number") {
-        nRows = input.length;
-        nCols = input[0].length;
-        inputData = new Array(nRows * nCols);
-        for (var i = 0; i < nRows; i++) {
-            for (var j = 0; j < nCols; j++) {
-                inputData[i * nCols + j] = input[i][j];
-            }
-        }
-    }
-    else {
+    if (options.rows&&options.cols) {
         nRows = options.rows;
         nCols = options.cols;
-        if (!nRows || !nCols) {
-            throw new Error("Invalid number of rows or columns " + nRows + " " + nCols);
-        }
     }
+    else {
+        throw new Error("Invalid number of rows or columns " + nRows + " " + nCols)
+    }
+
+    var divisor = options.divisor;
+    var i,j;
+    var kHeight =  kernel.length;
+    var kWidth =  kernel[0].length;
+    if (options.normalize) {
+        divisor = 0;
+        for (i = 0; i < kHeight; i++)
+            for (j = 0; j < kWidth; j++)
+                divisor += kernel[i][j];
+    }
+    if (divisor === 0) {
+        throw new RangeError('convolution: The divisor is equal to zero');
+    }
+
     var radix2Sized = FFTUtils.toRadix2(inputData, nRows, nCols);
     var conv = FFTUtils.convolute(radix2Sized.data, kernel, radix2Sized.rows, radix2Sized.cols);
-    return FFTUtils.crop(conv, radix2Sized.rows, radix2Sized.cols, nRows, nCols);
+    conv = FFTUtils.crop(conv, radix2Sized.rows, radix2Sized.cols, nRows, nCols);
+
+    if(divisor!=0){
+        for(i=0;i<conv.length;i++){
+            conv[i]/divisor;
+        }
+    }
+
+    return conv;
 }
 
 function convolutionDirect(input, kernel, opt) {
-    var options = Object.assign({}, {normalize : false, divisor : 1}, opt);
+    var tmp = matrix2Array(input);
+    var inputData = tmp.data;
+    var options = Object.assign({normalize : false, divisor : 1, rows:tmp.rows, cols:tmp.cols}, opt);
+
+    var nRows, nCols;
+    if (options.rows&&options.cols) {
+        nRows = options.rows;
+        nCols = options.cols;
+    }
+    else {
+        throw new Error("Invalid number of rows or columns " + nRows + " " + nCols)
+    }
+
     var divisor = options.divisor;
     var kHeight =  kernel.length;
     var kWidth =  kernel[0].length;
@@ -42,30 +69,8 @@ function convolutionDirect(input, kernel, opt) {
             for (j = 0; j < kWidth; j++)
                 divisor += kernel[i][j];
     }
-
     if (divisor === 0) {
         throw new RangeError('convolution: The divisor is equal to zero');
-    }
-
-    var inputData = input;
-    var nRows, nCols;
-    if (typeof input[0] != "number") {
-        nRows = input.length;
-        nCols = input[0].length;
-        inputData = new Array(nRows * nCols);
-        for (var i = 0; i < nRows; i++) {
-            for (var j = 0; j < nCols; j++) {
-                inputData[i * nCols + j] = input[i][j];
-            }
-        }
-    }
-
-    else {
-        nRows = options.rows;
-        nCols = options.cols;
-        if (!nRows || !nCols) {
-            throw new Error("Invalid number of rows or columns " + nRows + " " + nCols);
-        }
     }
 
     var output = new Array(nRows*nCols);
@@ -118,9 +123,34 @@ function LoG(sigma, nPoints, options){
     return kernel;
 }
 
+function matrix2Array(input){
+    var inputData=input;
+    var nRows, nCols;
+    if(typeof input[0]!="number"){
+        nRows = input.length;
+        nCols = input[0].length;
+        inputData = new Array(nRows*nCols);
+        for(var i=0;i<nRows;i++){
+            for(var j=0;j<nCols;j++){
+                inputData[i*nCols+j]=input[i][j];
+            }
+        }
+    }
+    else{
+        var tmp = Math.sqrt(input.length);
+        if(Number.isInteger(tmp)){
+            nRows=tmp;
+            nCols=tmp;
+        }
+    }
+
+    return {data:inputData,rows:nRows,cols:nCols};
+}
+
 
 module.exports = {
     fft:convolutionFFT,
     direct:convolutionDirect,
-    kernelFactory:{LoG:LoG}
+    kernelFactory:{LoG:LoG},
+    matrix2Array:matrix2Array
 };
