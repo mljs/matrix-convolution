@@ -36,9 +36,9 @@ function convolutionFFT(input, kernel, opt) {
     var conv = FFTUtils.convolute(radix2Sized.data, kernel, radix2Sized.rows, radix2Sized.cols);
     conv = FFTUtils.crop(conv, radix2Sized.rows, radix2Sized.cols, nRows, nCols);
 
-    if(divisor!=0){
+    if(divisor!=0&&divison!=1){
         for(i=0;i<conv.length;i++){
-            conv[i]/divisor;
+            conv[i]/=divisor;
         }
     }
 
