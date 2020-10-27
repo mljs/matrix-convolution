@@ -4,7 +4,5 @@ export default {
     format: 'cjs',
     file: 'lib/index.js',
   },
-  external: [
-    'ml-fft,
-  ],
+  external: ['ml-fft'],
 };
