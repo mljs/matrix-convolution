@@ -9,9 +9,30 @@ matrix convolution
 
 ## Installation
 
-```
+```bash
 $ npm install ml-matrix-convolution
+```
 
+```js
+const MatrixConvolution = require('ml-matrix-convolution');
+
+let matrix = [
+  [1, 1, 1, 1, 1],
+  [1, 1, 1, 1, 1],
+  [1, 1, 1, 1, 1],
+  [1, 1, 1, 1, 1],
+  [1, 1, 1, 1, 1],
+];
+
+let kernel = [
+  [1, 1, 1],
+  [1, 1, 1],
+  [1, 1, 1],
+];
+
+let conv1 = MatrixConvolution.direct(matrix, kernel);
+
+let conv2 = MatrixConvolution.fft(matrix, kerne11);
 
 ```
 
