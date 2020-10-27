@@ -10,7 +10,9 @@ matrix convolution
 ## Installation
 
 ```
-$ npm install ml-convolution
+$ npm install ml-matrix-convolution
+
+
 ```
 
 ## License

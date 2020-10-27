@@ -1,6 +1,6 @@
 import { toBeDeepCloseTo, toMatchCloseTo } from 'jest-matcher-deep-close-to';
 
-import * as convolution from '../index';
+import * as MatrixConvolution from '..';
 
 expect.extend({ toBeDeepCloseTo, toMatchCloseTo });
 
@@ -94,28 +94,28 @@ let smallFilter = [
 
 describe('Direct convolution', function () {
   it('Odd number of rows and columns', function () {
-    let conv = convolution.direct(matrix, kerne11);
+    let conv = MatrixConvolution.direct(matrix, kerne11);
     expect(conv).toMatchCloseTo(result1, 1e-8);
   });
   it('Even number of rows and columns', function () {
-    let conv = convolution.direct(matrix, kerne12);
+    let conv = MatrixConvolution.direct(matrix, kerne12);
     expect(conv).toMatchCloseTo(result2, 1e-8);
   });
 });
 describe('FFT convolution', function () {
   it('Odd number of rows and columns', function () {
-    let conv = convolution.fft(matrix, kerne11);
+    let conv = MatrixConvolution.fft(matrix, kerne11);
     expect(conv).toMatchCloseTo(result1, 1e-8);
   });
   it('Even number of rows and columns', function () {
-    let conv = convolution.fft(matrix, kerne12);
+    let conv = MatrixConvolution.fft(matrix, kerne12);
     expect(conv).toMatchCloseTo(result2, 1e-8);
   });
 });
 
 describe('KernelFatory', function () {
   it('LoG', function () {
-    let kernel = convolution.kernelFactory.LoG(1.4, 9, { factor: 40 });
+    let kernel = MatrixConvolution.kernelFactory.LoG(1.4, 9, { factor: 40 });
     expect(kernel).toMatchCloseTo(smallFilter, 1e-8);
   });
 });

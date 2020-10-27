@@ -5,6 +5,7 @@ npm-debug.log*
 
 # editors
 .idea
+test
 
 # Runtime data
 pids
