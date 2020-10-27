@@ -1,5 +1,12 @@
 # Changelog
 
+### [0.5.2](https://www.github.com/mljs/matrix-convolution/compare/v0.5.1...v0.5.2) (2020-10-27)
+
+
+### Bug Fixes
+
+* readme links ([86189a5](https://www.github.com/mljs/matrix-convolution/commit/86189a5b06fd2299fedd30d6e53eb8d3e10073df))
+
 ### [0.5.1](https://www.github.com/mljs/matrix-convolution/compare/v0.5.0...v0.5.1) (2020-10-27)
 
 
