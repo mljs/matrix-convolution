@@ -34,6 +34,8 @@ let conv1 = MatrixConvolution.direct(matrix, kernel);
 
 let conv2 = MatrixConvolution.fft(matrix, kerne11);
 
+console.log({conv1, conv2});
+
 ```
 
 ## License
