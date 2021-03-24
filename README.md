@@ -1,16 +1,16 @@
 # ml-matrix-convolution
 
-  [![NPM version][npm-image]][npm-url]
-  [![build status][travis-image]][travis-url]
-  [![David deps][david-image]][david-url]
-  [![npm download][download-image]][download-url]
-  
-matrix convolution
+[![NPM version][npm-image]][npm-url]
+[![build status][ci-image]][ci-url]
+[![Test coverage][codecov-image]][codecov-url]
+[![npm download][download-image]][download-url]
+
+Matrix convolution.
 
 ## Installation
 
-```bash
-$ npm install ml-matrix-convolution
+```console
+npm i ml-matrix-convolution
 ```
 
 ```js
@@ -34,14 +34,18 @@ let conv1 = MatrixConvolution.direct(matrix, kernel);
 
 let conv2 = MatrixConvolution.fft(matrix, kerne11);
 
-console.log({conv1, conv2}); // both should be equal
+console.log({ conv1, conv2 }); // both should be equal
 ```
 
 ## License
 
 [MIT](./LICENSE)
 
-[npm-image]: https://img.shields.io/npm/v/ml-matrix-convolution.svg?style=flat-square
+[npm-image]: https://img.shields.io/npm/v/ml-matrix-convolution.svg
 [npm-url]: https://npmjs.org/package/ml-matrix-convolution
-[download-image]: https://img.shields.io/npm/dm/ml-matrix-convolution.svg?style=flat-square
+[codecov-image]: https://img.shields.io/codecov/c/github/mljs/matrix-convolution.svg
+[codecov-url]: https://codecov.io/gh/mljs/matrix-convolution
+[ci-image]: https://github.com/mljs/matrix-convolution/workflows/Node.js%20CI/badge.svg?branch=master
+[ci-url]: https://github.com/mljs/matrix-convolution/actions?query=workflow%3A%22Node.js+CI%22
+[download-image]: https://img.shields.io/npm/dm/ml-matrix-convolution.svg
 [download-url]: https://npmjs.org/package/ml-matrix-convolution
