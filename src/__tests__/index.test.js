@@ -26,58 +26,10 @@ let kerne12 = [
 ];
 
 let result1 = [
-  9,
-  9,
-  9,
-  9,
-  9,
-  9,
-  9,
-  9,
-  9,
-  9,
-  9,
-  9,
-  9,
-  9,
-  9,
-  9,
-  9,
-  9,
-  9,
-  9,
-  9,
-  9,
-  9,
-  9,
-  9,
+  9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9,
 ];
 let result2 = [
-  4,
-  4,
-  4,
-  4,
-  4,
-  4,
-  4,
-  4,
-  4,
-  4,
-  4,
-  4,
-  4,
-  4,
-  4,
-  4,
-  4,
-  4,
-  4,
-  4,
-  4,
-  4,
-  4,
-  4,
-  4,
+  4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4,
 ];
 
 let smallFilter = [
@@ -92,29 +44,29 @@ let smallFilter = [
   [0, 0, 1, 2, 2, 2, 1, 0, 0],
 ];
 
-describe('Direct convolution', function () {
-  it('Odd number of rows and columns', function () {
+describe('Direct convolution', () => {
+  it('Odd number of rows and columns', () => {
     let conv = MatrixConvolution.direct(matrix, kerne11);
     expect(conv).toMatchCloseTo(result1, 1e-8);
   });
-  it('Even number of rows and columns', function () {
+  it('Even number of rows and columns', () => {
     let conv = MatrixConvolution.direct(matrix, kerne12);
     expect(conv).toMatchCloseTo(result2, 1e-8);
   });
 });
-describe('FFT convolution', function () {
-  it('Odd number of rows and columns', function () {
+describe('FFT convolution', () => {
+  it('Odd number of rows and columns', () => {
     let conv = MatrixConvolution.fft(matrix, kerne11);
     expect(conv).toMatchCloseTo(result1, 1e-8);
   });
-  it('Even number of rows and columns', function () {
+  it('Even number of rows and columns', () => {
     let conv = MatrixConvolution.fft(matrix, kerne12);
     expect(conv).toMatchCloseTo(result2, 1e-8);
   });
 });
 
-describe('KernelFatory', function () {
-  it('LoG', function () {
+describe('KernelFatory', () => {
+  it('LoG', () => {
     let kernel = MatrixConvolution.kernelFactory.LoG(1.4, 9, { factor: 40 });
     expect(kernel).toMatchCloseTo(smallFilter, 1e-8);
   });
