@@ -5,10 +5,13 @@ import { matrix2Array } from './util/matrix2Array';
 export function convolutionFFT(input, kernel, opt) {
   let tmp = matrix2Array(input);
   let inputData = tmp.data;
-  let options = Object.assign(
-    { normalize: false, divisor: 1, rows: tmp.rows, cols: tmp.cols },
-    opt,
-  );
+  let options = {
+    normalize: false,
+    divisor: 1,
+    rows: tmp.rows,
+    cols: tmp.cols,
+    ...opt,
+  };
 
   let nRows, nCols;
   if (options.rows && options.cols) {
