@@ -1,5 +1,16 @@
 # Changelog
 
+## [2.0.0](https://github.com/mljs/matrix-convolution/compare/v1.0.0...v2.0.0) (2025-05-25)
+
+
+### ⚠ BREAKING CHANGES
+
+* migrate to TypeScript and ESM
+
+### Code Refactoring
+
+* migrate to TypeScript and ESM ([2f1d95e](https://github.com/mljs/matrix-convolution/commit/2f1d95eb406b5b816d6929b574daafcaafc11f3e))
+
 ## [1.0.0](https://www.github.com/mljs/matrix-convolution/compare/v0.5.2...v1.0.0) (2021-03-24)
 
 
