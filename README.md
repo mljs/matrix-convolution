@@ -1,9 +1,9 @@
 # ml-matrix-convolution
 
 [![NPM version][npm-image]][npm-url]
-[![build status][ci-image]][ci-url]
-[![Test coverage][codecov-image]][codecov-url]
 [![npm download][download-image]][download-url]
+[![test coverage][codecov-image]][codecov-url]
+[![license][license-image]][license-url]
 
 Matrix convolution.
 
@@ -45,7 +45,7 @@ console.log({ conv1, conv2 }); // both should be equal
 [npm-url]: https://npmjs.org/package/ml-matrix-convolution
 [codecov-image]: https://img.shields.io/codecov/c/github/mljs/matrix-convolution.svg
 [codecov-url]: https://codecov.io/gh/mljs/matrix-convolution
-[ci-image]: https://github.com/mljs/matrix-convolution/workflows/Node.js%20CI/badge.svg?branch=master
-[ci-url]: https://github.com/mljs/matrix-convolution/actions?query=workflow%3A%22Node.js+CI%22
 [download-image]: https://img.shields.io/npm/dm/ml-matrix-convolution.svg
 [download-url]: https://npmjs.org/package/ml-matrix-convolution
+[license-image]: https://img.shields.io/npm/l/ml-matrix-convolution.svg
+[license-url]: https://github.com/image-js/ml-matrix-convolution/blob/main/LICENSE
