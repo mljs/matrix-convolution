@@ -1,4 +1,5 @@
 import { toBeDeepCloseTo, toMatchCloseTo } from 'jest-matcher-deep-close-to';
+import { describe, expect, it } from 'vitest';
 
 import * as MatrixConvolution from '..';
 
@@ -67,6 +68,7 @@ describe('FFT convolution', () => {
 
 describe('KernelFatory', () => {
   it('LoG', () => {
+    // eslint-disable-next-line new-cap
     let kernel = MatrixConvolution.kernelFactory.LoG(1.4, 9, { factor: 40 });
     expect(kernel).toMatchCloseTo(smallFilter, 1e-8);
   });
