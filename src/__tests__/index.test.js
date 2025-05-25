@@ -1,7 +1,7 @@
 import { toBeDeepCloseTo, toMatchCloseTo } from 'jest-matcher-deep-close-to';
 import { describe, expect, it } from 'vitest';
 
-import * as MatrixConvolution from '..';
+import * as MatrixConvolution from '../index.js';
 
 expect.extend({ toBeDeepCloseTo, toMatchCloseTo });
 
