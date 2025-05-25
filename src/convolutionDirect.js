@@ -1,4 +1,4 @@
-import { matrix2Array } from './util/matrix2Array';
+import { matrix2Array } from './util/matrix2Array.js';
 
 export function convolutionDirect(input, kernel, opt) {
   let tmp = matrix2Array(input);
