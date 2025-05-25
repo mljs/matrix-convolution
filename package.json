@@ -1,6 +1,6 @@
 {
   "name": "ml-matrix-convolution",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Matrix convolution: It offers the direct and the fourier transform convolution",
   "type": "module",
   "exports": "./lib/index.js",
